@@ -1,0 +1,48 @@
+#include <fstream>
+#include <string>
+#include <cmath>
+
+using namespace std;
+ifstream cin("c.in");
+ofstream cout("c.out");
+string s;
+long long sum;
+int main()
+{
+    int n = 215;//number of cards
+    //2^(c-1)
+    while(n--){
+        int c  = 0;
+        getline(cin,s);
+        int poz = s.find(":");
+        int fv[100];
+        for(int i = 1; i<=100; i++)fv[i] = 0;
+        int j;
+        for( j = poz+2; s[j]!= '|'; j+=3){
+            int nr = 0;
+            if(s[j] != ' ')nr = (s[j]-'0')* 10 + (s[j+1]-'0');
+            else nr = s[j+1]-'0';
+          //  cout<<nr<<" ";
+            fv[nr]=1;
+        }
+     //   cout<<" and ";
+        for(j = j + 2; j<s.length(); j+=3){
+            int nr = 0;
+            if(s[j] != ' ')nr = (s[j]-'0')* 10 + (s[j+1]-'0');
+            else nr = s[j+1]-'0';
+          // cout<<nr<<" ";
+            if(fv[nr] == 1)c++;
+        }
+       // cout<<endl<<c<<endl;
+        if(c!=0)sum+=pow(2, c-1);
+
+
+
+    }
+
+    cout<<sum;
+
+
+
+    return 0;
+}
